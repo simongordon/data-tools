@@ -12,13 +12,37 @@ app.use('/css', express.static(__dirname + '/node_modules/bootstrap/dist/css'));
 
 var mainMenu = [
     {name:"Home", route:"/"},
-    {name:"Other", route:"/other"}
+    {name:"Other", route:"/other"},
+    {name: "Dropdown",
+            subList: [
+                {name: "One", route: "/content/1"},
+                {name: "Two", route: "/content/2"}
+            ]
+    }
 ];
 
 app.locals.mainMenu = mainMenu;
 app.locals.siteName = "Data Tools";
 
 app.get('/', (req, res) => {
+    res.render("home", {
+        userName: "Simon"
+    })
+});
+
+var contentPages = [
+    {id: 1, title: 'Page One', content: '<h1>Hello</h1><p>memes</p>'},
+    {id: 2, title: 'Page Two', content: '<h1>Nah</h1><p>asdf</p>'},
+];
+
+app.get('/content/:contentId', (req, res) => {
+    var match = contentPages.filter(o => o.id == req.params.contentId)[0];
+    res.render("content", {
+        pageContent: match.content
+    })
+});
+
+app.get('/other', (req, res) => {
     res.render("home", {
         userName: "Simon"
     })

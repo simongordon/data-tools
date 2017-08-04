@@ -4,8 +4,8 @@ html
     link(rel='stylesheet', href='/css/bootstrap.css')
     title #{siteName}
     block scripts
-        script(src='/jquery.min.js')
-        script(src='/bootstrap.min.js')
+        script(src='/js/jquery.min.js')
+        script(src='/js/bootstrap.min.js')
   body
 
     nav.nav.navbar-default(role='navigation')
@@ -20,13 +20,22 @@ html
         div.collapse.navbar-collapse(id='bs-example-navbar-collapse-1')
           ul.nav.navbar-nav
             for menuItem in mainMenu
-              li: a(href=menuItem.route) #{menuItem.name}
+              if (menuItem.subList != null)
+                li.dropdown
+                  a.dropdown-toggle(href='#',data-toggle='dropdown',role='button',aria-haspopup='true',aria-expanded='false') #{menuItem.name}
+                    span.caret
+                  ul.dropdown-menu
+                    for subMenuItem in menuItem.subList
+                      li
+                        a(href=subMenuItem.route) #{subMenuItem.name}
+              else
+                li: a(href=menuItem.route) #{menuItem.name}
 
     //.header
       //h1.page-title #{siteName}
-    
-    .main-content.container
-      block content
 
-    .footer
-      p Memes
+    .container
+    
+      .main-content
+        block content
+
