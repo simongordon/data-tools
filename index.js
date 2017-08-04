@@ -16,6 +16,7 @@ var mainMenu = [
 ];
 
 app.locals.mainMenu = mainMenu;
+app.locals.siteName = "Data Tools";
 
 app.get('/', (req, res) => {
     res.render("home", {
