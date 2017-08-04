@@ -3,15 +3,18 @@ html
   head
     link(rel='stylesheet', href='/css/bootstrap.css')
     title Some Site
+    block scripts
+        script(src='/jquery.min.js')
+        script(src='/bootstrap.min.js')
   body
     .header
       h1.page-title Some Site
 
     ul.nav
-      li: a(href='/') Home
-      li: a(href='/') Also Home
+      for menuItem in mainMenu
+        li: a(href=menuItem.route) #{menuItem.name}
     
-    .main-content
+    .main-content.container
       block content
 
     .footer

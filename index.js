@@ -1,24 +1,29 @@
 
+var path = require('path');
 var express = require('express');
 var app = express();
 
-var pug = require('pug');
+app.set("view engine", "pug");
+app.set("views", path.join(__dirname, "/source/templates"));
 
 app.use('/js', express.static(__dirname + '/node_modules/bootstrap/dist/js')); // redirect bootstrap JS
 app.use('/js', express.static(__dirname + '/node_modules/jquery/dist')); // redirect JS jQuery
 app.use('/css', express.static(__dirname + '/node_modules/bootstrap/dist/css')); // redirect CSS bootstrap
 
-var template = pug.compileFile(__dirname + '/source/templates/home.pug')
+var mainMenu = [
+    {name:"Home", route:"/"},
+    {name:"Other", route:"/other"}
+];
 
-app.get('/', function (req, res, next) {
-  try {
-    var html = template({ title: 'Home' })
-    res.send(html)
-  } catch (e) {
-    next(e)
-  }
-})
+app.locals.mainMenu = mainMenu;
 
-app.listen(process.env.PORT || 3000, function () {
-  console.log('Listening on http://localhost:' + (process.env.PORT || 3000))
+app.get('/', (req, res) => {
+    res.render("home", {
+        userName: "Simon"
+    })
+});
+
+const portNum = 3000;
+app.listen(process.env.PORT || portNum, function () {
+  console.log('Listening on http://localhost:' + (process.env.PORT || portNum))
 })
