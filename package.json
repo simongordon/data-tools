@@ -1,0 +1,19 @@
+{
+  "name": "data-tools",
+  "version": "1.0.0",
+  "description": "A website containing a number of tools.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/simongordon/data-tools.git"
+  },
+  "author": "Simon Gordon",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/simongordon/data-tools/issues"
+  },
+  "homepage": "https://github.com/simongordon/data-tools#readme"
+}
