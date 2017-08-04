@@ -15,5 +15,11 @@
   "bugs": {
     "url": "https://github.com/simongordon/data-tools/issues"
   },
-  "homepage": "https://github.com/simongordon/data-tools#readme"
+  "homepage": "https://github.com/simongordon/data-tools#readme",
+  "dependencies": {
+    "express": "*",
+    "pug": "*",
+    "jquery": "*",
+    "bootstrap": "*"
+  }
 }

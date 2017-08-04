@@ -1,0 +1,18 @@
+doctype html
+html
+  head
+    link(rel='stylesheet', href='/css/bootstrap.css')
+    title Some Site
+  body
+    .header
+      h1.page-title Some Site
+
+    ul.nav
+      li: a(href='/') Home
+      li: a(href='/') Also Home
+    
+    .main-content
+      block content
+
+    .footer
+      p Memes
