@@ -9,16 +9,13 @@ app.set("views", path.join(__dirname, "/source/templates"));
 app.use('/js', express.static(__dirname + '/node_modules/bootstrap/dist/js')); // redirect bootstrap JS
 app.use('/js', express.static(__dirname + '/node_modules/jquery/dist')); // redirect JS jQuery
 app.use('/css', express.static(__dirname + '/node_modules/bootstrap/dist/css')); // redirect CSS bootstrap
+app.use('/fonts', express.static(__dirname + '/node_modules/bootstrap/dist/fonts'));
 
 var mainMenu = [
     {name:"Home", route:"/"},
+    {name:"Content", subList: [] },
+    {name:"Links", route:"/links"},
     {name:"Other", route:"/other"},
-    {name: "Content",
-            subList: [
-                //{name: "One", route: "/content/1"},
-                //{name: "Two", route: "/content/2"}
-            ]
-    }
 ];
 
 var contentPages = [
@@ -63,6 +60,10 @@ app.get('/content/:contentId', (req, res) => {
     res.render("content", {
         pageContent: match.content
     })
+});
+
+app.get('/links', (req, res) => {
+    res.render("links", { })
 });
 
 app.get('/other', (req, res) => {
